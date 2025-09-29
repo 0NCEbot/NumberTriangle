@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * This is the provided NumberTriangle class to be used in this coding task.
@@ -89,8 +90,14 @@ public class NumberTriangle {
      *
      */
     public int retrieve(String path) {
-        // TODO implement this method
-        return -1;
+        if (path.isEmpty()) return this.root;
+
+        char c = path.charAt(0);
+        String rest = path.substring(1);
+
+        if (c == 'l') return this.left.retrieve(rest);
+        else if (c == 'r') return this.right.retrieve(rest);
+        else throw new IllegalArgumentException("invalid path character: " + c);
     }
 
     /** Read in the NumberTriangle structure from a file.
